@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import com.hobershort.tasklist.R;
+import com.hobershort.thinglist.R;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;

@@ -1,6 +1,6 @@
 package com.hobershort.thinglist;
 
-import com.hobershort.tasklist.R;
+import com.hobershort.thinglist.R;
 
 import android.app.TabActivity;
 import android.content.Intent;
