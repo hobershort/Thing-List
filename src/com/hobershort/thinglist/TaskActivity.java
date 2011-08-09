@@ -33,14 +33,15 @@ import android.widget.TextView;
 public class TaskActivity extends ListActivity {
 	
 	ArrayAdapter<String> adapter;
-	private int window;
+	private String uuid;
 	
 
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 	
 		//Find out which window we are
-		window = getIntent().getExtras().getInt("window");
+		uuid = getIntent().getExtras().getString("uuid");
+		
 		
 		final Resources res = getResources();
 		final Context context = this;
@@ -50,9 +51,10 @@ public class TaskActivity extends ListActivity {
 		setListAdapter(adapter);
 		adapter.add(res.getString(R.string.create_new));
 		
+
 		//Load any previous items
 		try {
-			FileInputStream inf = openFileInput(Integer.toString(window));
+			FileInputStream inf = openFileInput(uuid);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inf));
 			String line = null;
 			while((line = reader.readLine()) != null){
@@ -61,12 +63,12 @@ public class TaskActivity extends ListActivity {
 			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(true);
 		registerForContextMenu(lv);
@@ -144,15 +146,16 @@ public class TaskActivity extends ListActivity {
 		});
 		
 		alert.show();
+		
 	}
 	
 
 	@Override
-	protected void onDestroy() {
+	protected void onPause() {
 		// Write out the list entries
-		super.onDestroy();
+		super.onPause();
 		try {
-			FileOutputStream fos = openFileOutput(Integer.toString(window), Context.MODE_PRIVATE);
+			FileOutputStream fos = openFileOutput(uuid, Context.MODE_PRIVATE);
 			BufferedWriter outf = new BufferedWriter(new OutputStreamWriter(fos));
 			String item;
 			for(int i = 0; i < adapter.getCount(); i++){
@@ -167,13 +170,13 @@ public class TaskActivity extends ListActivity {
 			
 			
 			outf.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 }

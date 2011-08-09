@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/addlist" android:title="@string/newlist"></item>
+    <item android:title="@string/renamelist" android:id="@+id/renamelist"></item><item android:id="@+id/deletelist" android:title="@string/deletelist"></item>
+    
+    
+</menu>

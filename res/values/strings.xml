@@ -5,4 +5,7 @@
     <string name="create_new">Create new...</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="newlist">New List</string>
+    <string name="deletelist">Delete List</string>
+    <string name="renamelist">Rename List</string>
 </resources>
